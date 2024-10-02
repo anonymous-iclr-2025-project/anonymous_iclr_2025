@@ -1,0 +1,200 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bulma css template -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <!-- model viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+  <title>
+    MOTIONFLOW
+  </title>
+  <link rel="icon" href="icon.ico">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+   
+        
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/before_after.css">
+  <!-- <link rel="icon" href="./static/images/cameraicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <link rel="stylesheet" href="./static/css/magnify.css">
+  <script src="./static/js/jquery.magnify.js"></script>
+
+
+</head>
+
+<body>
+
+  <style>
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+    </style>
+
+  <section class="section">
+  <div class="container has-text-centered">
+
+    <p class="title is-3"> 🧙‍♂️ MOTIONFLOW: Learning Implicit Motion Flow for Complex Camera Trajectory Control in Video Generation
+    </p>
+
+    <div class="is-flex is-justify-content-center">
+
+    </div>
+    <br>
+    <img class="summary-img" src="imgs/teaser_2.png" style="width:100%;">
+
+  </div>
+
+  <!-- main container -->
+  <div class="container">
+
+    <!-- abstract -->
+    <p class="title is-3 mt-5 has-text-centered"> Abstract </p>
+    <p class="content is-size-6 has-text-left">
+      Generating videos guided by camera trajectories poses significant challenges in achieving consistency and generalizability, particularly when both camera and object motions are present. Existing approaches often attempt to learn these motions separately, which may lead to confusion regarding the relative motion between the camera and the objects. To address this challenge, we propose a novel approach that integrates both camera and object motions by converting them into the motion of corresponding pixels. Utilizing a stable diffusion network, we effectively learn reference motion maps in relation to the specified camera trajectory. These maps, along with an extracted semantic object prior, is then fed into an image-to-video network to generate the desired video that can accurately follow the designated camera trajectory while maintaining consistent object motions. Extensive experiments verify that our model outperforms SoTA methods in a large margin. 
+    </p>
+
+
+    <p class="title is-3 mt-5 has-text-centered">Overview</p>
+
+    <img class="summary-img" src="imgs/pipe_line_2.png" style="width:100%;">
+    <p class="content is-size-6">The overview of MotionFlow. Our framework is mainly constituted with two parts. In the Reference Motion Net, the camera trajectory is initially encoded using Pose Encoder and added to the reference model using camera motion attention with the reference image to get the reference motion priors.
+      For the video diffusion process stage, firstly semantic features are extracted through the Motion Extractor for calculate the object attention and also fused with multi-frame noise. Secondly, reference pixel motion are integrated through reference attention. In addition, Temporal Modules are utilized to manipulate the temporal dimension to ensure consistency of generated video.</p>
+    
+
+    <p class="title is-3 mt-5 has-text-centered"> Visualization Results</p>
+
+      <div class="content has-text-justified">
+      <h3 class="title is-4">Wild dynamic animals</h3>
+      </div>
+
+      <table class="table" style="height:100%;width:100%;">
+        <colgroup>
+          <col span="1" style="width: 33%;">
+          <col span="1" style="width: 33%;">
+          <col span="1" style="width: 33%;">
+        </colgroup>
+        <tbody>
+
+          <tr> 
+            <th> <video muted controls autoplay loop> <source src="videos/a deer besides a tree_2.mp4" type="video/mp4"> </video> </th>
+            <th> <video muted controls autoplay loop> <source src="videos/a deer besides a tree.mp4" type="video/mp4"> </video> </th>
+            <th> <video muted controls autoplay loop> <source src="videos/bear3.jpg.mp4" type="video/mp4"> </video> </th>
+          </tr>
+          <tr> 
+            <th> <video muted controls autoplay loop> <source src="videos/bear1.jpg_0f47577ab3441480.txt.mp4" type="video/mp4"> </video> </th>
+            <th> <video muted controls autoplay loop> <source src="videos/animals_rabbit2.jpg_279f2ecc43905a1a.txt.mp4" type="video/mp4"> </video> </th>
+            <th> <video muted controls autoplay loop> <source src="videos/horse_fine2.mp4" type="video/mp4"> </video> </th>
+          </tr>
+      </table>
+
+
+
+      <div class="content has-text-justified">
+        <h3 class="title is-4">Wild Scenes</h3>
+        </div>
+
+        <table class="table" style="height:100%;width:100%;">
+          <colgroup>
+            <col span="1" style="width: 33%;">
+            <col span="1" style="width: 33%;">
+            <col span="1" style="width: 33%;">
+          </colgroup>
+          <tbody>
+
+            <tr> 
+              <th> <video muted controls autoplay loop> <source src="videos/river and mountains in a peaceful envirnoment_2.mp4" type="video/mp4"> </video> </th>
+              <th> <video muted controls autoplay loop> <source src="videos/river and mountains in a peaceful envirnoment.mp4" type="video/mp4"> </video> </th>
+              <th> <video muted controls autoplay loop> <source src="videos/lake.mp4" type="video/mp4"> </video> </th>
+            </tr>
+            <tr> 
+              <th> <video muted controls autoplay loop> <source src="videos/desert.mp4" type="video/mp4"> </video> </th>
+              <th> <video muted controls autoplay loop> <source src="videos/building_25.jpg_3c35b868a8ec3433.txt.mp4" type="video/mp4"> </video> </th>
+              <th> <video muted controls autoplay loop> <source src="videos/building_25.jpg_3f79dc32d575bcdc.txt.mp4" type="video/mp4"> </video> </th>
+            </tr>
+        </table>
+
+
+
+        <div class="content has-text-justified">
+        <h3 class="title is-4">Indoor Scenes</h3>
+        </div>
+     
+
+        <table class="table" style="height:100%;width:100%;">
+          <colgroup>
+            <col span="1" style="width: 33%;">
+            <col span="1" style="width: 33%;">
+            <col span="1" style="width: 33%;">
+          </colgroup>
+          <tbody>
+
+            <tr> 
+              <th> <video muted controls autoplay loop> <source src="indoor_scenes/11_0f540553fc30f16d.mp4" type="video/mp4"> </video> </th>
+              <th> <video muted controls autoplay loop> <source src="indoor_scenes/12_61b6485ad242bf8a.mp4" type="video/mp4"> </video> </th>
+              <th> <video muted controls autoplay loop> <source src="indoor_scenes/18_fe42422857682683.mp4"> </video> </th>
+            </tr>
+            <tr> 
+              <th> <video muted controls autoplay loop> <source src="indoor_scenes/21_4bc7ca44cc62b8b1.mp4" type="video/mp4"> </video> </th>
+              <th> <video muted controls autoplay loop> <source src="indoor_scenes/24_9981436f1448c131.mp4" type="video/mp4"> </video> </th>
+              <th> <video muted controls autoplay loop> <source src="indoor_scenes/307_10ac0ae67d317d11.mp4" type="video/mp4"> </video> </th>
+            </tr>
+        </table>
+
+  All contents of this page are anonymous and not reveal any author identity！！
+  </section>
+
+
+</body>
+
+
+<script>
+  var videos = document.getElementsByClassName("clickplay");
+  for (var i = 0; i < videos.length; i++) {
+    videos[i].addEventListener("click", function() {
+      this.play();
+    });
+    videos[i].addEventListener("ended", function() {
+      this.pause();
+      this.currentTime = 0;
+    });
+  }
+  
+  document.querySelectorAll('.info-container').forEach(function(container) {
+    container.addEventListener('mouseover', function() {
+      var infoText = container.querySelector('.info-text');
+      infoText.style.display = 'block';
+    });
+  
+    container.addEventListener('mouseout', function() {
+      var infoText = container.querySelector('.info-text');
+      infoText.style.display = 'none';
+    });
+  });
+</script>
+</html>
